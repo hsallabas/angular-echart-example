@@ -1,7 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { WrapperComponent } from './shared/layouts/wrapper/wrapper.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: WrapperComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/bank-accounts/bank-accounts.module').then(m => m.BankAccountsModule),
+      },
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
