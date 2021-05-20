@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutsModule } from './layouts/layouts.module';
+import { MaterialModule } from './modules/material.module';
 
 
 
@@ -10,7 +11,8 @@ import { LayoutsModule } from './layouts/layouts.module';
     CommonModule,
   ],
   exports: [
-    LayoutsModule
+    LayoutsModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

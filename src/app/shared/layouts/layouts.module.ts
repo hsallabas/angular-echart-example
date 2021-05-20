@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { WrapperComponent } from './wrapper/wrapper.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MaterialModule } from '../modules/material.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
   exports: [
     WrapperComponent,
