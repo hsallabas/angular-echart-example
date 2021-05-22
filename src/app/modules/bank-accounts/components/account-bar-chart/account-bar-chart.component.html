@@ -1,0 +1,16 @@
+<div #containerRef class="bar-chart">
+  <ngx-charts-bar-vertical
+    [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+    [scheme]="colorScheme"
+    [barPadding]="30"
+    [noBarWhenZero]="false"
+    [results]="single"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel">
+  </ngx-charts-bar-vertical>
+</div>

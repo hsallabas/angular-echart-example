@@ -1,0 +1,10 @@
+<div #containerRef class="pie-chart">
+  <ngx-charts-advanced-pie-chart
+    [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="gradient"
+    (select)="onSelect($event)"
+    >
+  </ngx-charts-advanced-pie-chart>
+</div>
