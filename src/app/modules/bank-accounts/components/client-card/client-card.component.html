@@ -1,23 +1,33 @@
 <div class="container-fluid">
     <mat-card>
-        <div class="b-header">
-            <div class="user-id">
-                <p><span>Client ID: </span>{{clientData?.id}}</p>
+        <mat-card-header>
+            <div class="b-header">
+                <div class="user-id">
+                    <p><span>Client ID: </span>{{clientData?.id}}</p>
+                </div>
+                <div class="more-info">
+                    <button mat-flat-button color="primary">More</button>
+                </div>
             </div>
-            <div class="more-info">
-                <button mat-flat-button color="primary">More</button>
+            <div class="user-info">
+                <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
+                <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
+                    date:'dd/MM/YYYY') : ''}}</p>
+                <p><span>Address: </span>{{clientData?.address}}</p>
             </div>
-        </div>
-        <div class="user-info">
-            <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
-            <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
-                date:'dd/MM/YYYY') : ''}}</p>
-            <p><span>Address: </span>{{clientData?.address}}</p>
-        </div>
+        </mat-card-header>
         <ng-container *ngIf="accountData$ | async as accountData">
-            <div class="content">
-                charts
-            </div>
+            <mat-card-content>
+                <ng-container *ngIf="accountData.length > 0 else noAccountData">
+                    <app-account-pie-chart [accountData]="accountData"></app-account-pie-chart>
+                    <app-account-bar-chart [accountData]="accountData"></app-account-bar-chart>
+                </ng-container>
+            </mat-card-content>
         </ng-container>
     </mat-card>
 </div>
+
+
+<ng-template #noAccountData>
+    <p>This user has no any bank account</p>
+</ng-template>
