@@ -2,19 +2,22 @@
     <mat-card>
         <div class="b-header">
             <div class="user-id">
-                <p><span>Client ID: </span>608199c68e4675862bcc0e96</p>
+                <p><span>Client ID: </span>{{clientData?.id}}</p>
             </div>
             <div class="more-info">
                 <button mat-flat-button color="primary">More</button>
             </div>
         </div>
         <div class="user-info">
-            <p><span>Full Name: </span>Halil Sallabas</p>
-            <p><span>Birth Date: </span>01/01/1992</p>
-            <p><span>Address: </span>05 rue sahl ibn Haroun, Manouba , Tunisie"</p>
+            <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
+            <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
+                date:'dd/MM/YYYY') : ''}}</p>
+            <p><span>Address: </span>{{clientData?.address}}</p>
         </div>
-        <div class="content">
-            charts
-        </div>
+        <ng-container *ngIf="accountData$ | async as accountData">
+            <div class="content">
+                charts
+            </div>
+        </ng-container>
     </mat-card>
 </div>

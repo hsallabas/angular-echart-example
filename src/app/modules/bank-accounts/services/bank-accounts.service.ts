@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ClientModel } from 'src/app/shared/Models';
 
+import { AccountModel, ClientModel } from 'src/app/shared/Models';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class BankAccountsService {
-  public clients$ = new BehaviorSubject<ClientModel[]>([]);
+  public clients$: BehaviorSubject<ClientModel[]>
+    = new BehaviorSubject<ClientModel[]>([]);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -24,5 +25,14 @@ export class BankAccountsService {
    */
   public setClients(data: ClientModel[]): void {
     this.clients$.next(data);
+  }
+
+  /**
+   * Get client's accounts info from server
+   * @param clientId client id
+   * @returns Observable
+   */
+  public getClientAccounts(clientId: string): Observable<AccountModel[]> {
+    return this.httpClient.get<AccountModel[]>(`${environment.apiUrl}/api/accounts?client=${clientId}`);
   }
 }

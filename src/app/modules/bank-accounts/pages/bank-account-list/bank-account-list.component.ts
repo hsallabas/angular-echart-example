@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 import { ClientModel } from 'src/app/shared/Models';
 
 import { BankAccountsService } from '../../services/bank-accounts.service';
@@ -12,7 +12,7 @@ import { BankAccountsService } from '../../services/bank-accounts.service';
 })
 export class BankAccountListComponent implements OnInit {
   public clientsData$ = this.bankAccountService.clients$.pipe(
-    filter((data) => data.length > 0)
+    filter((data) => data.length > 0),
   );
   private unsubscribe$ = new Subject<boolean>();
 
@@ -21,6 +21,7 @@ export class BankAccountListComponent implements OnInit {
   ngOnInit(): void {
     this.bankAccountService.getClients().pipe(
       takeUntil(this.unsubscribe$),
+      take(1),
       map((data: ClientModel[]) => this.bankAccountService.setClients(data))
     ).subscribe();
   }
