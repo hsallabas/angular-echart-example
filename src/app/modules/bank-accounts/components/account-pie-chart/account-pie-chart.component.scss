@@ -1,0 +1,12 @@
+@import '~bootstrap-scss/bootstrap.scss';
+
+.b-user-card {
+    &__pie-chart {
+        @include media-breakpoint-down(md) { 
+            position: relative;
+            display: flex;
+            height: 12.5rem;
+            align-items: center;
+        }
+    }
+}

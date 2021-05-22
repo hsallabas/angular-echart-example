@@ -1,4 +1,4 @@
-<div class="filter">
+<div class="b-user-card__filters">
     <mat-checkbox color="primary" *ngFor="let cardType of cardTypes; let i=index" [checked]="true"
         (change)="filter(i, $event)">{{cardType.name}}</mat-checkbox>
 </div>

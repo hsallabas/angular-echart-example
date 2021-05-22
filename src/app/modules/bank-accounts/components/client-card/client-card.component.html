@@ -1,33 +1,42 @@
-<div class="container-fluid">
-    <mat-card>
-        <mat-card-header>
-            <div class="b-header">
-                <div class="user-id">
-                    <p><span>Client ID: </span>{{clientData?.id}}</p>
-                </div>
-                <div class="more-info">
-                    <button mat-flat-button color="primary">More</button>
-                </div>
-            </div>
-            <div class="user-info">
-                <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
-                <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
-                    date:'dd/MM/YYYY') : ''}}</p>
-                <p><span>Address: </span>{{clientData?.address}}</p>
-            </div>
-        </mat-card-header>
+<mat-card>
+    <div class="b-user-card__header">
+        <div class="b-user-card__client-id">
+            <span>Client Id: </span>
+            <span>{{clientData?.id}}</span>
+        </div>
+        <div class="b-user-card__more-info">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon>read_more</mat-icon>
+            </button>
+        </div>
+
+    </div>
+    <div class="b-user-card__content">
+        <div class="b-user-card__user-info">
+            <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
+            <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
+                date:'dd/MM/YYYY') : ''}}</p>
+            <p><span>Address: </span>{{clientData?.address}}</p>
+        </div>
         <ng-container *ngIf="accountData$ | async as accountData">
-            <mat-card-content>
-                <ng-container *ngIf="accountData.length > 0 else noAccountData">
-                    <app-account-pie-chart [accountData]="accountData"></app-account-pie-chart>
-                    <app-account-bar-chart [accountData]="accountData"></app-account-bar-chart>
-                </ng-container>
-            </mat-card-content>
+            <ng-container *ngIf="accountData.length > 0 else noAccountData">
+                <div class="b-user-card__charts">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <app-account-pie-chart [accountData]="accountData"></app-account-pie-chart>
+                        </div>
+                        <div class="col-md-8">
+                            <app-account-bar-chart [accountData]="accountData"></app-account-bar-chart>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </ng-container>
-    </mat-card>
-</div>
+    </div>
+</mat-card>
+
 
 
 <ng-template #noAccountData>
-    <p>This user has no any bank account</p>
+    <p>Bank Account Not Found</p>
 </ng-template>

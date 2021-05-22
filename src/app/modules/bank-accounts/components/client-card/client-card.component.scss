@@ -1,0 +1,32 @@
+@import '../../../../../assets/scss/core/defaults';
+
+mat-card {
+    display: flex;
+    flex-direction: column;
+    color: $ebony-clay;
+}
+
+.b-user-card {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $catskill-white;
+    }
+
+    &__client-id {
+        span {
+            &:first-child {
+                text-transform: uppercase;
+            }
+        }   
+    }
+
+    &__user-info {
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $catskill-white;
+    }
+}

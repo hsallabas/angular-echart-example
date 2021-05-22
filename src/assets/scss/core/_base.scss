@@ -9,12 +9,14 @@ app-header {
     top: 0;
     left: 0;
     width: 100%;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     z-index: 99;
-    min-height: 5.125rem;
     display: flex;
     align-items: center;
+    background-color: $white;
+    box-shadow: 0 .125rem .25rem -0.0625rem rgba($black, .2),
+        0 .25rem .3125rem 0rem rgba($black, .14),
+        0 .0625rem .625rem 0 rgba($black, .12);
+    height: $header-height;
 }
   
 app-wrapper {
@@ -25,7 +27,7 @@ app-wrapper {
 
 main {
     flex-grow: 1;
-    padding-top: 5.125rem;
+    padding-top: $header-height + 1.5rem;
 }
   
 footer {
