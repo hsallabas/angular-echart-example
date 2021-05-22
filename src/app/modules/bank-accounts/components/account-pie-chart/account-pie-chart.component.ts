@@ -18,13 +18,11 @@ export class AccountPieChartComponent implements OnInit {
         name: 'Counters',
         radius: '50%',
         type: 'pie',
-        data: [
-          { value: 3, name: '>=0' },
-          { value: 2, name: '<0' },
-        ],
+        data: [],
         label: {
-          position: 'inside'
-        }
+          position: 'inside',
+          formatter: '{b}: {d} %'
+        },
       },
     ],
   };
@@ -34,6 +32,31 @@ export class AccountPieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.setChartData();
+  }
+
+  /**
+   * Set chart data
+   */
+  public setChartData(): void {
+    const data = [
+      { name: '>=0', value: 0},
+      { name: '<0', value: 0},
+    ];
+    this.accountData.forEach((item) => {
+      if (item.balance >= 0) {
+        data[0].value = data[0].value + 1;
+      } else {
+        data[1].value = data[1].value + 1;
+      }
+    });
+    this.mergeOption = {
+      series: [{ data }]
+    };
+  }
+
+  public selectAccountData($event: any): void {
+    console.log($event);
   }
 
 }
