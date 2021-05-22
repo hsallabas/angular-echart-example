@@ -1,7 +1,7 @@
 <ng-container *ngIf="clientsData$ | async as clientsData">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 client-card" *ngFor="let client of clientsData; trackBy: trackByFn">
+            <div class="col-lg-6" *ngFor="let client of clientsData; trackBy: trackByFn">
                 <app-client-card [clientData]="client"></app-client-card>
             </div>
         </div>
