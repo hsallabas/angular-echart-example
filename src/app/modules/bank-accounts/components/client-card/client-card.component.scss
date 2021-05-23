@@ -20,6 +20,12 @@ mat-card {
         span {
             &:first-child {
                 text-transform: uppercase;
+                opacity: .7;
+                font-size: .75rem;
+            }
+
+            &:last-child {
+                font-size: 1rem;
             }
         }   
     }
@@ -28,9 +34,45 @@ mat-card {
         padding-bottom: 1rem;
         margin-bottom: 1rem;
         border-bottom: 1px solid $catskill-white;
+        >div {
+            margin-bottom: .25rem;
+            span {
+                &:first-child {
+                    text-transform: uppercase;
+                    opacity: .7;
+                    font-size: .75rem;
+                }
 
-        &__address {
-            height: 2.5rem;
+                &:last-child {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    &__content {
+        min-height: 9.3125rem;
+    }
+
+    &__modal-table {
+        table {
+            width: 100%;
+        }
+    }
+
+    &__modal-close {
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 767.98px) { 
+    .b-user-card {
+        &__modal-table {
+            table {
+                th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
+                    padding-left: 0;
+                }
+            }
         }
     }
 }

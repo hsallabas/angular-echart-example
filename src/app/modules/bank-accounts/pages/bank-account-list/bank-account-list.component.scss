@@ -2,13 +2,5 @@
 
 .b-user-card {
     margin-bottom: 1rem;
-    height: 17.875rem;
-
-    &__chart {
-        height: 42.875rem;
-
-        @include media-breakpoint-down(md) { 
-            height: 55.375rem;
-        }
-    }
+    min-height: 14.375rem;
 }

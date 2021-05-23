@@ -2,7 +2,7 @@
     <div class="container">
         <ng-container *ngIf="searchValue$ | async as searchValue">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mb-3">
                     <mat-chip-list>
                         <mat-chip [removable]="true" (removed)="removeSearch()">
                             {{searchValue}}
@@ -14,7 +14,7 @@
         </ng-container>
         <div class="row">
             <div class="col-12 b-user-card" *ngFor="let client of clientsData; trackBy: trackByFn"
-                [ngClass]="{'b-user-card__chart' : client.accounts.length}" (deferLoad)="client.show = true">
+                 (deferLoad)="client.show = true">
                 <ng-container *ngIf="client.show">
                     <app-client-card [clientData]="client"></app-client-card>
                 </ng-container>

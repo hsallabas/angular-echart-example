@@ -32,4 +32,9 @@ main {
   
 footer {
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding: .5rem 0;
 }

@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EnsureModuleLoadedOnceGuard } from './ensureModuleLoadedOnceGuard';
 import { ProgressInterceptor } from './interceptors/progress.interceptor';
 import { ProgressBarService } from './services/progress-bar.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { ProgressBarService } from './services/progress-bar.service';
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService] },

@@ -45,7 +45,7 @@ export class ClientCardComponent implements OnInit {
 
   public openAccountListDialog(): void {
     this.dialog.open(this.accountListTemplate, {
-      width: '500px'
+      width: '500px',
     });
   }
 
