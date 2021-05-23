@@ -5,7 +5,8 @@
             <span>{{clientData?.id}}</span>
         </div>
         <div class="b-user-card__more-info">
-            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                (click)="openAccountListDialog()">
                 <mat-icon>read_more</mat-icon>
             </button>
         </div>
@@ -23,21 +24,52 @@
                 <div class="b-user-card__charts">
                     <div class="row">
                         <div class="col-md-4">
-                            <app-account-pie-chart 
-                                [accountData]="accountData" 
-                                (selectedChart)="setSelectedChart($event)"
-                            >
+                            <app-account-pie-chart [accountData]="accountData"
+                                (selectedChart)="setSelectedChart($event)">
                             </app-account-pie-chart>
                         </div>
                         <div class="col-md-8">
-                            <app-account-bar-chart 
-                                [accountData]="accountData"
-                                [selectedChart]="selectedChart"
-                            ></app-account-bar-chart>
+                            <app-account-bar-chart [accountData]="accountData" [selectedChart]="selectedChart">
+                            </app-account-bar-chart>
                         </div>
                     </div>
                 </div>
             </ng-container>
+            <ng-template #clientAccountList>
+                <div class="b-user-card__user-name">
+                    <p>{{clientData?.firstname}} {{clientData?.name}}</p>
+                </div>
+                <ng-container *ngIf="accountData.length > 0 else noAccountData">
+                    <mat-table [dataSource]="accountData" class="mat-elevation-z8">
+                        <!-- Account Column -->
+                        <ng-container matColumnDef="number">
+                            <mat-header-cell *matHeaderCellDef> Account </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.number}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Type Column -->
+                        <ng-container matColumnDef="card_type">
+                            <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.card_type}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Balance Column -->
+                        <ng-container matColumnDef="balance">
+                            <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+                        </ng-container>
+
+                        <!-- Date of Creation Column -->
+                        <ng-container matColumnDef="created">
+                            <mat-header-cell *matHeaderCellDef> Date of Creation </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.created | date:'dd/MM/YYYY'}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </ng-container>
+            </ng-template>
         </ng-container>
     </div>
 </mat-card>
