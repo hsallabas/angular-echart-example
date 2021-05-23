@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
 import { AccountModel, ChartInfoModel } from 'src/app/shared/Models';
@@ -11,7 +11,8 @@ interface CardTypeModel {
 @Component({
   selector: 'app-account-bar-chart',
   templateUrl: './account-bar-chart.component.html',
-  styleUrls: ['./account-bar-chart.component.scss']
+  styleUrls: ['./account-bar-chart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountBarChartComponent implements OnInit, OnChanges {
   @Input() public accountData: AccountModel[] = [];
@@ -126,6 +127,10 @@ export class AccountBarChartComponent implements OnInit, OnChanges {
       }
       this.mergeOption = { series };
     }
+  }
+
+  trackByFn(index: number): number {
+    return index;
   }
 
 }

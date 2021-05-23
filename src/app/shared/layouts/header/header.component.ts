@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SimpleStateService } from 'src/app/core/services/simple-state.service';
 
 @Component({

@@ -10,7 +10,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
 
-
 const modules = [
     MatInputModule,
     MatFormFieldModule,
@@ -21,7 +20,7 @@ const modules = [
     MatDialogModule,
     MatTableModule,
     MatChipsModule,
-]
+];
 
 @NgModule({
     imports: modules,

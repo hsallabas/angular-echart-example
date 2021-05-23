@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
 import { AccountModel, ChartInfoModel } from 'src/app/shared/Models';
@@ -6,7 +6,8 @@ import { AccountModel, ChartInfoModel } from 'src/app/shared/Models';
 @Component({
   selector: 'app-account-pie-chart',
   templateUrl: './account-pie-chart.component.html',
-  styleUrls: ['./account-pie-chart.component.scss']
+  styleUrls: ['./account-pie-chart.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccountPieChartComponent implements OnInit {
   @Input() public accountData: AccountModel[] = [];
