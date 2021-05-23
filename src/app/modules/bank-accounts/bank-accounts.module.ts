@@ -9,6 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BankAccountsService } from './services/bank-accounts.service';
 import { AccountBarChartComponent } from './components/account-bar-chart/account-bar-chart.component';
 import { AccountPieChartComponent } from './components/account-pie-chart/account-pie-chart.component';
+import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AccountPieChartComponent } from './components/account-pie-chart/account
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    DeferLoadModule
   ],
   providers: [
     BankAccountsService

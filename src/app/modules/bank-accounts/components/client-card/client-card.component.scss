@@ -28,5 +28,9 @@ mat-card {
         padding-bottom: 1rem;
         margin-bottom: 1rem;
         border-bottom: 1px solid $catskill-white;
+
+        &__address {
+            height: 2.5rem;
+        }
     }
 }

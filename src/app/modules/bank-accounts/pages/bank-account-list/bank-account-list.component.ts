@@ -21,8 +21,12 @@ export class BankAccountListComponent implements OnInit, OnDestroy {
     filter(([clientData, searchValue]) => clientData.length > 0),
     map(([clientData, searchValue]) => {
       if (searchValue) {
-        return clientData.filter(x => x.firstname === searchValue);
+        clientData = clientData.filter(x => x.firstname === searchValue);
       }
+      clientData = clientData.map((item, index) => {
+        item.show = false;
+        return item;
+      });
       return clientData;
     }),
   );

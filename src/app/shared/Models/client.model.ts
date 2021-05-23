@@ -5,4 +5,5 @@ export interface ClientModel {
     address: string;
     birthday: string;
     accounts: Array<string>;
+    show: boolean;
 }

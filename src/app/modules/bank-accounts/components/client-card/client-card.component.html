@@ -17,7 +17,7 @@
             <p><span>Full Name: </span>{{clientData?.firstname}} {{clientData?.name}}</p>
             <p><span>Birth Date: </span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
                 date:'dd/MM/YYYY') : ''}}</p>
-            <p><span>Address: </span>{{clientData?.address}}</p>
+            <p class="b-user-card__user-info__address"><span>Address: </span>{{clientData?.address}}</p>
         </div>
         <ng-container *ngIf="accountData$ | async as accountData">
             <ng-container *ngIf="accountData.length > 0 else noAccountData">
