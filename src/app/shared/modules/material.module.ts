@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 const modules = [
     MatInputModule,
@@ -18,6 +20,7 @@ const modules = [
     MatCheckboxModule,
     MatDialogModule,
     MatTableModule,
+    MatChipsModule,
 ]
 
 @NgModule({

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { combineLatest, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
-import { ClientModel } from 'src/app/shared/Models';
 
 import { BankAccountsService } from '../../services/bank-accounts.service';
+import { SimpleStateService } from 'src/app/core/services/simple-state.service';
+import { ClientModel } from 'src/app/shared/Models';
 
 @Component({
   selector: 'app-bank-account-list',
@@ -11,12 +12,26 @@ import { BankAccountsService } from '../../services/bank-accounts.service';
   styleUrls: ['./bank-account-list.component.scss']
 })
 export class BankAccountListComponent implements OnInit, OnDestroy {
-  public clientsData$ = this.bankAccountService.clients$.pipe(
-    filter((data) => data.length > 0),
+  public searchValue$ = this.stateService.searchText$.pipe();
+  public clientsData$ = combineLatest([
+    this.bankAccountService.clients$,
+    this.searchValue$
+  ]).pipe(
+    filter(([clientData, searchValue]) => clientData.length > 0),
+    map(([clientData, searchValue]) => {
+      if (searchValue) {
+        return clientData.filter(x => x.firstname === searchValue);
+      }
+      return clientData;
+    }),
   );
+
   private unsubscribe$ = new Subject<boolean>();
 
-  constructor(private bankAccountService: BankAccountsService) { }
+  constructor(
+    private bankAccountService: BankAccountsService,
+    private stateService: SimpleStateService
+  ) { }
 
   ngOnInit(): void {
     this.bankAccountService.getClients().pipe(
@@ -33,6 +48,10 @@ export class BankAccountListComponent implements OnInit, OnDestroy {
 
   trackByFn(index: number, item: ClientModel): string {
     return item.id;
+  }
+
+  public removeSearch(): void {
+    this.stateService.searchText$.next('');
   }
 
 }
