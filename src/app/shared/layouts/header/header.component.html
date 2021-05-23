@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div class="b-search">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Search</mat-label>
+                    <input type="text" matInput placeholder="Client Name" [(ngModel)]="searchValue"
+                        (keyup.enter)="search()">
+                    <mat-icon matSuffix (click)="search()">search</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="b-user">
+                <div class="b-user__avatar">
+                    <img src="https://www.fillmurray.com/300/300" />
+                </div>
+                <div class="b-user__name">
+                    John Doe
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="progressBarMode$ | async as progressBarMode">
+            <mat-progress-bar *ngIf="progressBarMode === 'indeterminate'" [color]="'primary'" [mode]="progressBarMode"></mat-progress-bar>
+        </ng-container>
+    </div>
+</div>

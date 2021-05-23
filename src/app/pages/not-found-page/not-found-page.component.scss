@@ -1,0 +1,15 @@
+.b-not-found {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &__content-title {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        opacity: .8;
+    }
+}

@@ -1,0 +1,13 @@
+.b-user-card {
+    &__filters {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        mat-checkbox {
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

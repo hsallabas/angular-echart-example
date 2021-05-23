@@ -1,0 +1,24 @@
+<ng-container *ngIf="clientsData$ | async as clientsData">
+    <div class="container">
+        <ng-container *ngIf="searchValue$ | async as searchValue">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <mat-chip-list>
+                        <mat-chip [removable]="true" (removed)="removeSearch()">
+                            {{searchValue}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </ng-container>
+        <div class="row">
+            <div class="col-12 b-user-card" *ngFor="let client of clientsData; trackBy: trackByFn"
+                 (deferLoad)="client.show = true">
+                <ng-container *ngIf="client.show">
+                    <app-client-card [clientData]="client"></app-client-card>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>

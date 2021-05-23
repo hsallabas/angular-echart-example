@@ -1,0 +1,76 @@
+<mat-card>
+    <div class="b-user-card__header">
+        <div class="b-user-card__client-id">
+            <span>Client Id: </span>
+            <span>{{clientData?.id}}</span>
+        </div>
+        <div class="b-user-card__more-info" *ngIf="clientData?.accounts?.length">
+            <button mat-stroked-button color="accent" (click)="openAccountListDialog()"><mat-icon>read_more</mat-icon></button>
+        </div>
+    </div>
+    <div class="b-user-card__content">
+        <div class="b-user-card__user-info">
+            <div><span>Full Name: </span><span>{{clientData?.firstname}} {{clientData?.name}}</span></div>
+            <div><span>Birth Date: </span><span>{{(clientData?.birthday !== 'None' ) ? (clientData?.birthday |
+                date:'dd/MM/YYYY') : ''}}</span></div>
+            <div><span>Address: </span><span>{{clientData?.address}}</span></div>
+        </div>
+        <ng-container *ngIf="accountData$ | async as accountData">
+            <ng-container *ngIf="accountData.length > 0 else noAccountData">
+                <div class="b-user-card__charts">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <app-account-pie-chart [accountData]="accountData"
+                                (selectedChart)="setSelectedChart($event)">
+                            </app-account-pie-chart>
+                        </div>
+                        <div class="col-md-8">
+                            <app-account-bar-chart [accountData]="accountData" [selectedChart]="selectedChart"
+                                (openAccountListDialog)="openAccountListDialog()">
+                            </app-account-bar-chart>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #clientAccountList>
+                <div class="b-user-card__header">
+                    <div>{{clientData?.firstname}} {{clientData?.name}}</div>
+                    <mat-icon class="b-user-card__modal-close" mat-dialog-close >close</mat-icon>
+                </div>
+                <ng-container *ngIf="accountData.length > 0 else noAccountData">
+                    <div class="b-user-card__modal-table">
+                        <table mat-table [dataSource]="accountData" cdkDropList cdkDropListOrientation="horizontal">
+
+                            <ng-container matColumnDef="number">
+                                <th mat-header-cell cdkDrag *matHeaderCellDef> Account </th>
+                                <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="card_type">
+                                <th mat-header-cell cdkDrag *matHeaderCellDef> Type </th>
+                                <td mat-cell *matCellDef="let element"> {{element.card_type}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="balance">
+                                <th mat-header-cell cdkDrag *matHeaderCellDef> Balance </th>
+                                <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="created">
+                                <th mat-header-cell cdkDrag *matHeaderCellDef> Date of Creation </th>
+                                <td mat-cell *matCellDef="let element"> {{element.created | date:'dd/MM/YYYY'}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </ng-container>
+    </div>
+</mat-card>
+
+<ng-template #noAccountData>
+    <div class="d-flex align-items-center"><mat-icon>error</mat-icon><span class="ml-2">Bank Account Not Found</span></div>
+</ng-template>

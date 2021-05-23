@@ -1,0 +1,6 @@
+<div class="b-user-card__filters">
+    <mat-checkbox color="primary" *ngFor="let cardType of cardTypes; trackBy: trackByFn; let i=index" [checked]="true"
+        (change)="filter(i, $event)">{{cardType.name}}</mat-checkbox>
+</div>
+<div echarts [options]="chartOption" [merge]="mergeOption" class="demo-chart"
+    (chartClick)="onChartClickEvent()"></div>
