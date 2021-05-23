@@ -4,8 +4,8 @@ This example application would allows you to check the registered clients and th
 
 #### Features
 
-- Lazy loading.
-- Strict mode.
+- Lazy loading
+- Strict mode
 - Defer Load
 - BEM CSS Naming Notation
 - Component Driven Development
