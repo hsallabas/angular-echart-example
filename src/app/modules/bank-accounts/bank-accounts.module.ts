@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { BankAccountsRoutingModule } from './bank-accounts-routing.module';
@@ -21,7 +20,6 @@ import { AccountPieChartComponent } from './components/account-pie-chart/account
   imports: [
     CommonModule,
     BankAccountsRoutingModule,
-    HttpClientModule,
     SharedModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),

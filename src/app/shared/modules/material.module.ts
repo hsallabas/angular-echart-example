@@ -9,6 +9,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 const modules = [
     MatInputModule,
@@ -20,6 +22,7 @@ const modules = [
     MatDialogModule,
     MatTableModule,
     MatChipsModule,
+    MatProgressBarModule,
 ];
 
 @NgModule({

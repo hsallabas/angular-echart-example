@@ -18,5 +18,8 @@
                 </div>
             </div>
         </div>
+        <ng-container *ngIf="progressBarMode$ | async as progressBarMode">
+            <mat-progress-bar *ngIf="progressBarMode === 'indeterminate'" [color]="'primary'" [mode]="progressBarMode"></mat-progress-bar>
+        </ng-container>
     </div>
 </div>
