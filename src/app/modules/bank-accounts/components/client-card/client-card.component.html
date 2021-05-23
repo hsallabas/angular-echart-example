@@ -23,10 +23,17 @@
                 <div class="b-user-card__charts">
                     <div class="row">
                         <div class="col-md-4">
-                            <app-account-pie-chart [accountData]="accountData"></app-account-pie-chart>
+                            <app-account-pie-chart 
+                                [accountData]="accountData" 
+                                (selectedChart)="setSelectedChart($event)"
+                            >
+                            </app-account-pie-chart>
                         </div>
                         <div class="col-md-8">
-                            <app-account-bar-chart [accountData]="accountData"></app-account-bar-chart>
+                            <app-account-bar-chart 
+                                [accountData]="accountData"
+                                [selectedChart]="selectedChart"
+                            ></app-account-bar-chart>
                         </div>
                     </div>
                 </div>
@@ -34,8 +41,6 @@
         </ng-container>
     </div>
 </mat-card>
-
-
 
 <ng-template #noAccountData>
     <p>Bank Account Not Found</p>

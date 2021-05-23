@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 import { ClientModel } from 'src/app/shared/Models';
@@ -10,7 +10,7 @@ import { BankAccountsService } from '../../services/bank-accounts.service';
   templateUrl: './bank-account-list.component.html',
   styleUrls: ['./bank-account-list.component.scss']
 })
-export class BankAccountListComponent implements OnInit {
+export class BankAccountListComponent implements OnInit, OnDestroy {
   public clientsData$ = this.bankAccountService.clients$.pipe(
     filter((data) => data.length > 0),
   );
@@ -24,6 +24,11 @@ export class BankAccountListComponent implements OnInit {
       take(1),
       map((data: ClientModel[]) => this.bankAccountService.setClients(data))
     ).subscribe();
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 
   trackByFn(index: number, item: ClientModel): string {

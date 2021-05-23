@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EChartsOption } from 'echarts';
 
-import { AccountModel } from 'src/app/shared/Models';
-
+import { AccountModel, ChartInfoModel } from 'src/app/shared/Models';
 
 @Component({
   selector: 'app-account-pie-chart',
@@ -11,13 +10,15 @@ import { AccountModel } from 'src/app/shared/Models';
 })
 export class AccountPieChartComponent implements OnInit {
   @Input() public accountData: AccountModel[] = [];
+  @Output() public selectedChart: EventEmitter<ChartInfoModel> = new EventEmitter();
 
   chartOption: EChartsOption = {
     series: [
       {
-        name: 'Counters',
+        name: 'Percentage',
         radius: '50%',
         type: 'pie',
+        selectedMode: 'single',
         data: [],
         label: {
           position: 'inside',
@@ -25,6 +26,7 @@ export class AccountPieChartComponent implements OnInit {
         },
       },
     ],
+    color: ['#5470c6', '#ee6666'],
   };
 
   public mergeOption: any;
@@ -44,19 +46,23 @@ export class AccountPieChartComponent implements OnInit {
       { name: '<0', value: 0},
     ];
     this.accountData.forEach((item) => {
-      if (item.balance >= 0) {
-        data[0].value = data[0].value + 1;
-      } else {
-        data[1].value = data[1].value + 1;
-      }
+      item.balance >= 0 ? data[0].value = data[0].value + 1 : data[1].value = data[1].value + 1;
     });
     this.mergeOption = {
       series: [{ data }]
     };
   }
 
-  public selectAccountData($event: any): void {
-    console.log($event);
+  /**
+   * Send pie chart selected status
+   * @param $event pie chart click event
+   */
+  public selectBarChartData($event: any): void {
+    this.selectedChart.emit({
+      name: $event.data.name,
+      dataIndex: $event.dataIndex,
+      selected: $event.event.target.selected
+    });
   }
 
 }
