@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest, Subject } from 'rxjs';
 import { filter, map, take, takeUntil } from 'rxjs/operators';
 
@@ -10,7 +10,6 @@ import { ClientModel } from 'src/app/shared/Models';
   selector: 'app-bank-account-list',
   templateUrl: './bank-account-list.component.html',
   styleUrls: ['./bank-account-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BankAccountListComponent implements OnInit, OnDestroy {
   public searchValue$ = this.stateService.searchText$.pipe();
@@ -21,12 +20,8 @@ export class BankAccountListComponent implements OnInit, OnDestroy {
     filter(([clientData, searchValue]) => clientData.length > 0),
     map(([clientData, searchValue]) => {
       if (searchValue) {
-        clientData = clientData.filter(x => x.firstname === searchValue);
+        return clientData.filter(x => x.firstname === searchValue);
       }
-      clientData = clientData.map((item, index) => {
-        item.show = false;
-        return item;
-      });
       return clientData;
     }),
   );
