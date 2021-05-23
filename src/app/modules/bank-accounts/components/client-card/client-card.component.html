@@ -24,12 +24,16 @@
                 <div class="b-user-card__charts">
                     <div class="row">
                         <div class="col-md-4">
-                            <app-account-pie-chart [accountData]="accountData"
+                            <app-account-pie-chart 
+                                [accountData]="accountData"
                                 (selectedChart)="setSelectedChart($event)">
                             </app-account-pie-chart>
                         </div>
                         <div class="col-md-8">
-                            <app-account-bar-chart [accountData]="accountData" [selectedChart]="selectedChart">
+                            <app-account-bar-chart 
+                                [accountData]="accountData" 
+                                [selectedChart]="selectedChart"
+                                (openAccountListDialog)="openAccountListDialog()">
                             </app-account-bar-chart>
                         </div>
                     </div>

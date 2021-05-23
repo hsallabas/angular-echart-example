@@ -47,7 +47,7 @@ export class BankAccountListComponent implements OnInit, OnDestroy {
     this.unsubscribe$.unsubscribe();
   }
 
-  trackByFn(index: number, item: ClientModel): string {
+  public trackByFn(index: number, item: ClientModel): string {
     return item.id;
   }
 

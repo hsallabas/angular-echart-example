@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -12,20 +19,19 @@ import { BankAccountsService } from '../../services/bank-accounts.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientCardComponent implements OnInit {
-  @Input() public clientData: ClientModel | undefined;
-  public selectedChart: ChartInfoModel | undefined;
   public accountDataSubject$: BehaviorSubject<AccountModel[]>
     = new BehaviorSubject<AccountModel[]>([]);
   public accountData$ = this.accountDataSubject$.asObservable();
 
-  @ViewChild('clientAccountList')
-  accountListTemplate!: TemplateRef<any>;
-  displayedColumns: string[] = ['number', 'card_type', 'balance', 'created'];
+  @Input() public clientData!: ClientModel;
+  @ViewChild('clientAccountList') accountListTemplate!: TemplateRef<any>;
+  public selectedChart!: ChartInfoModel;
+  public displayedColumns: string[] = ['number', 'card_type', 'balance', 'created'];
 
   constructor(
     private bankAccountService: BankAccountsService,
     public dialog: MatDialog,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     if (this.clientData && this.clientData.id) {

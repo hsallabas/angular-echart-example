@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { 
+  ChangeDetectionStrategy,
+  Component, EventEmitter,
+  Input, OnChanges, OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { EChartsOption } from 'echarts';
 
 import { AccountModel, ChartInfoModel } from 'src/app/shared/Models';
@@ -16,7 +22,8 @@ interface CardTypeModel {
 })
 export class AccountBarChartComponent implements OnInit, OnChanges {
   @Input() public accountData: AccountModel[] = [];
-  @Input() public selectedChart: ChartInfoModel | undefined;
+  @Input() public selectedChart!: ChartInfoModel;
+  @Output() public openAccountListDialog: EventEmitter<boolean> = new EventEmitter(false);
   public cardTypes: CardTypeModel[] = [];
 
   chartOption: EChartsOption = {
@@ -129,8 +136,12 @@ export class AccountBarChartComponent implements OnInit, OnChanges {
     }
   }
 
-  trackByFn(index: number): number {
+  public trackByFn(index: number): number {
     return index;
+  }
+
+  public onChartClickEvent(): void {
+    this.openAccountListDialog.emit(true);
   }
 
 }
